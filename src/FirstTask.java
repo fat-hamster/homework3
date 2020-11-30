@@ -41,7 +41,7 @@ public class FirstTask {
                 }
                 if (player_number > secret_number) {
                     System.out.println("Загаданное число меньше.");
-                } else if (player_number < secret_number) {
+                } else {
                     System.out.println("Загаданное число больше.");
                 }
                 user_try--;
