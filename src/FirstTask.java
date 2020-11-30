@@ -33,7 +33,7 @@ public class FirstTask {
                 } else {
                     System.out.println("Необходимо ввести число");
                     sc.next();
-                    break;
+                    continue;
                 }
                 if(player_number == secret_number) {
                     System.out.println("Вы выиграли!!!!");
