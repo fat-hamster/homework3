@@ -5,6 +5,7 @@ public class FirstTask {
     private final Scanner sc;
     private final Random rnd;
     private int chance;
+    private int total_score;
 
     FirstTask() {
         sc = new Scanner(System.in);
@@ -30,6 +31,10 @@ public class FirstTask {
                 mainTitle(user_try);
                 if(sc.hasNextInt()) {
                     player_number = sc.nextInt();
+                    if(player_number < 0 || player_number > 9) {
+                        System.out.println("Число должно быть в пределах от 0 до 9!");
+                        continue;
+                    }
                 } else {
                     System.out.println("Необходимо ввести число");
                     sc.next();
@@ -37,6 +42,7 @@ public class FirstTask {
                 }
                 if(player_number == secret_number) {
                     System.out.println("Вы выиграли!!!!");
+                    total_score++;
                     break;
                 }
                 if (player_number > secret_number) {
@@ -46,19 +52,23 @@ public class FirstTask {
                 }
                 user_try--;
             } while (user_try > 0);
+            if(user_try == 0) {
+                System.out.println("Вы проиграли!");
+            }
         } while (doExit());
     }
 
     private boolean doExit() {
+        System.out.print("Ваш общий счет: ");
+        System.out.println(total_score);
         System.out.println("Сыграть еще раз? (y/n)");
-
         String answer = sc.next();
-
         switch (answer) {
             case "y", "Y", "д", "Д" -> {
                 return true;
             }
             default -> {
+                System.out.println("До свидания!");
                 return false;
             }
         }
