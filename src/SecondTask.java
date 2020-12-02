@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,13 +8,13 @@ public class SecondTask {
             "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
     private String secret, word;
     private final Random rnd;
-    private Scanner sc;
-    private String mask;
+    private final Scanner sc;
+    private StringBuffer sb;
 
     SecondTask() {
         rnd = new Random();
         sc = new Scanner(System.in);
-        mask = "###############";
+        sb = new StringBuffer("###############");
     }
 
     public void start() {
@@ -21,33 +22,42 @@ public class SecondTask {
     }
 
     private void mainLoop() {
-        mainTitle();
+        printTitle();
+        secret = words[rnd.nextInt(words.length)];
         do {
-            secret = words[rnd.nextInt(words.length)];
-            do {
-                word = sc.next();
-                if(word.isEmpty()) {
-                    continue;
-                }
-                if(word.length() != 1) {
-                    // введено слово
-                    if(word.equalsIgnoreCase(secret)){
-                        // Выиграл
+            word = sc.next();
+            if(word.equalsIgnoreCase("help")) {
+                printHelp();
+                printTitle();
+                continue;
+            }
+            if (word.equalsIgnoreCase(secret)) {
+                System.out.println("Правильно!!!");
+                System.exit(0);
+            } else {
+                for (int i = 0; i < secret.length(); i++) {
+                    if (i >= word.length()) {
+                        break;
                     }
-                } else {
-                    // введена буква
-                    char ch = word.toLowerCase().charAt(0);
-
+                    if(secret.charAt(i) == word.charAt(i)) {
+                        sb.deleteCharAt(i);
+                        sb.insert(i, word.charAt(i));
+                    }
                 }
-            }while (true);
-        }while (true);
+            }
+            printTitle();
+        } while (true);
     }
 
-    private void mainTitle() {
-        System.out.println("Программа загадала слово, попробуй отгадать вводя буквы");
-        System.out.println("Если буква в этом слове есть, она отобразится на своем месте");
+    private void printTitle() {
+        System.out.println("Программа загадала слово, попробуй его отгадать");
         System.out.println("Загаданное слово это фрукт, овощь или ягода (слово на английском языке)");
-        System.out.println("Введите букву или слово целиком");
-        System.out.println(mask);
+        System.out.println("Введите слово. (Для помощи введите help)");
+        System.out.println(sb);
+    }
+
+    private void printHelp() {
+        System.out.println(Arrays.asList(words).subList(0, words.length / 2));
+        System.out.println(Arrays.asList(words).subList(words.length / 2, words.length));
     }
 }
