@@ -46,13 +46,13 @@ public class SecondTask {
                 }
             }
             printTitle();
-        } while (true);
+        } while (!word.equalsIgnoreCase("exit"));
     }
 
     private void printTitle() {
         System.out.println("Программа загадала слово, попробуй его отгадать");
         System.out.println("Загаданное слово это фрукт, овощь или ягода (слово на английском языке)");
-        System.out.println("Введите слово. (Для помощи введите help)");
+        System.out.println("Введите слово. (Для помощи введите help, для выхода exit)");
         System.out.println(sb);
     }
 
