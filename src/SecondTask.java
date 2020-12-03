@@ -3,13 +3,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class SecondTask {
-    private String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli",
+    private final String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli",
             "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut",
             "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
-    private String secret, word;
+
     private final Random rnd;
     private final Scanner sc;
-    private StringBuffer sb;
+    private final StringBuffer sb;
 
     SecondTask() {
         rnd = new Random();
@@ -22,6 +22,7 @@ public class SecondTask {
     }
 
     private void mainLoop() {
+        String secret, word;
         printTitle();
         secret = words[rnd.nextInt(words.length)];
         do {
