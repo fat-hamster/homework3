@@ -35,13 +35,22 @@ public class SecondTask {
                 System.out.println("Правильно!!!");
                 System.exit(0);
             } else {
-                for (int i = 0; i < secret.length(); i++) {
-                    if (i >= word.length()) {
-                        break;
+                if(word.length() == 1) {
+                    for (int i = 0; i < secret.length(); i++) {
+                        if(secret.charAt(i) == word.charAt(0)) {
+                            sb.deleteCharAt(i);
+                            sb.insert(i, word.charAt(0));
+                        }
                     }
-                    if(secret.charAt(i) == word.charAt(i)) {
-                        sb.deleteCharAt(i);
-                        sb.insert(i, word.charAt(i));
+                } else {
+                    for (int i = 0; i < secret.length(); i++) {
+                        if (i >= word.length()) {
+                            break;
+                        }
+                        if (secret.charAt(i) == word.charAt(i)) {
+                            sb.deleteCharAt(i);
+                            sb.insert(i, word.charAt(i));
+                        }
                     }
                 }
             }
@@ -52,7 +61,7 @@ public class SecondTask {
     private void printTitle() {
         System.out.println("Программа загадала слово, попробуй его отгадать");
         System.out.println("Загаданное слово это фрукт, овощь или ягода (слово на английском языке)");
-        System.out.println("Введите слово. (Для помощи введите help, для выхода exit)");
+        System.out.println("Введите слово или букву. (Для помощи введите help, для выхода exit)");
         System.out.println(sb);
     }
 
