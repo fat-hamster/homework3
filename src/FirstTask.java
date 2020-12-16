@@ -18,7 +18,7 @@ public class FirstTask {
     }
 
     public void start() {
-        start(3);
+        this.start(3);
     }
 
     private void mainLoop(){
